@@ -1,10 +1,15 @@
-import { Controller, Get, Param, Post, Delete, Patch, Put} from '@nestjs/common';
+import { Controller, Get, Param, Post, Delete, Patch, Put, Body, Query} from '@nestjs/common';
 
 @Controller('movies')
 export class MoviesController {
     @Get()
     getAll() {
         return "This will return all movies"
+    }
+
+    @Get("search") // movies/search?year=2000
+    search(@Query('year') year: string) {
+        return `search movie ${year}` // :id url밑으로 쓰면 연결이 안됨
     }
 
     @Get("/:id")
@@ -23,14 +28,19 @@ export class MoviesController {
     }
 
     @Patch("/:id") 
-    updateMovie(@Param('id') MovieId: string) {
-        return `Update Movie : ${MovieId}`
+    updateMovie(@Param('id') MovieId: string, @Body() updateData) {
+        return {
+            updateMovie: MovieId,
+            ...updateData,
+        }
     }
     
     @Put("/:id") 
     updateAllMovie(@Param('id') MovieId: string) {
         return `Update All Movie : ${MovieId}`
     }
+
+   
 }
 /*
 기억하자, 무언가가 필요하다면 내가 요청해야 한다
