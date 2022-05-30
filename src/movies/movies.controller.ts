@@ -9,7 +9,7 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 @Controller('movies')
 export class MoviesController {
 
-    // 요청을 해서 services에 접근하자
+    // 요청을 해서 services에 접근하자, 또한  Dependency injection 
     constructor(private readonly moviesService: MoviesService) {}
 
     @Get()
