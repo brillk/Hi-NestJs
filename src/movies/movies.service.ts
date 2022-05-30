@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie } from './entities/movie.entity';
 
 @Injectable()
@@ -31,7 +32,7 @@ export class MoviesService {
         })
     }
 
-    update(id:number, updateData) {
+    update(id:number, updateData: UpdateMovieDto) {
         const movie = this.getOne(id); //일단 하나 고르기
         this.deleteOne(id); //원래 내용을 지운다
         this.movies.push({...movie, ...updateData}); //앞이 전 내용, 뒤는 업뎃할 내용을 앞의 내용에 덮는다

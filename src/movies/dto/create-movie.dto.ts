@@ -1,4 +1,4 @@
-import {IsArray, IsNumber, IsString} from "class-validator";
+import {IsArray, IsNumber, IsOptional, IsString} from "class-validator";
 
 export class CreateMovieDto{
 
@@ -8,7 +8,8 @@ export class CreateMovieDto{
     @IsNumber()
     readonly year: number;
 
-    @IsString({each: true})
+    @IsOptional()
+    @IsString({each: true })
     readonly genres: string[];
     
  } // 와 시발 타입을 정해놓네

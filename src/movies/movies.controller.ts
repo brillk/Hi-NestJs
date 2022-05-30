@@ -2,6 +2,7 @@ import { Controller, Get, Param, Post, Delete, Patch, Put, Body, Query} from '@n
 import { MoviesService } from './movies.service';
 import { Movie } from './entities/movie.entity';
 import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 
 
 
@@ -38,7 +39,7 @@ export class MoviesController {
     }
 
     @Patch("/:id") 
-    updateMovie(@Param('id') MovieId: number, @Body() updateData) {
+    updateMovie(@Param('id') MovieId: number, @Body() updateData: UpdateMovieDto) {
        return this.moviesService.update(MovieId, updateData);
     } //Post, Patch에 유효성 검사하기 -> dto
 }
