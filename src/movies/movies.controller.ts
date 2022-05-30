@@ -1,6 +1,7 @@
 import { Controller, Get, Param, Post, Delete, Patch, Put, Body, Query} from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { Movie } from './entities/movie.entity';
+import { CreateMovieDto } from './dto/create-movie.dto';
 
 
 
@@ -21,24 +22,25 @@ export class MoviesController {
     // }
 
     @Get(":id")
-    getOne(@Param('id') MovieId: string):Movie {// parameter를 요청
+    getOne(@Param('id') MovieId: number):Movie {// parameter를 요청
         return this.moviesService.getOne(MovieId);
     }
 
     @Post()
-    create(@Body() movieData) {
+    create(@Body() movieData: CreateMovieDto) {
+        
         return this.moviesService.create(movieData);
     }
 
     @Delete(":id") 
-    delMovie(@Param('id') MovieId: string) {
+    delMovie(@Param('id') MovieId: number) {
         return this.moviesService.deleteOne(MovieId);
     }
 
     @Patch("/:id") 
-    updateMovie(@Param('id') MovieId: string, @Body() updateData) {
+    updateMovie(@Param('id') MovieId: number, @Body() updateData) {
        return this.moviesService.update(MovieId, updateData);
-    } //Post, Patch에 유효성 검사하기
+    } //Post, Patch에 유효성 검사하기 -> dto
 }
 /*
 기억하자, 무언가가 필요하다면 내가 요청해야 한다
