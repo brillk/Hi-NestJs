@@ -37,11 +37,8 @@ export class MoviesController {
 
     @Patch("/:id") 
     updateMovie(@Param('id') MovieId: string, @Body() updateData) {
-        return {
-            updateMovie: MovieId,
-            ...updateData, // ... -> object
-        }
-    }
+       return this.moviesService.update(MovieId, updateData);
+    } //Post, Patch에 유효성 검사하기
 }
 /*
 기억하자, 무언가가 필요하다면 내가 요청해야 한다
